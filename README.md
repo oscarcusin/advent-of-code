@@ -33,7 +33,7 @@ If you wish to run on your personal puzzle input, replace `inputs/day_x.in`, whe
 | 05  | ⭐⭐ |
 | 06  | ⭐⭐ |
 | 07  | ⭐⭐ |
-| 08  |       |
+| 08  | ⭐⭐ |
 | 09  |       |
 | 10  |       |
 | 11  |       |
