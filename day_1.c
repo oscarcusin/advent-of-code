@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -39,6 +40,7 @@ int main(int argc, char * argv[]) {
         if (left_digits_only && right_digits_only) digits_only_sum += (left_digits_only - '0') * 10 + right_digits_only - '0';
         combined_sum += (left_digit - '0') * 10 + right_digit - '0';
     }
+    free(line);
     printf("Part one: %d\n", digits_only_sum);
     printf("Part two: %d\n", combined_sum);
 }

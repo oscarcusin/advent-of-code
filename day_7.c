@@ -105,6 +105,10 @@ int main(int argc, char * argv[]) {
     }
     rank(hands, types, 0);
     rank(hands, types_joker, 1);
+    for (int i = 0; i < 7; i++) list_delete(list_get(types, i));
+    for (int i = 0; i < 7; i++) list_delete(list_get(types_joker, i));
+    list_delete(types);
+    list_delete(types_joker);
     long winnings = 0;
     long winnings_joker = 0;
     for (int i = 0; i < list_size(hands); i++) {
@@ -112,6 +116,8 @@ int main(int argc, char * argv[]) {
         winnings += hand->rank * hand->bid;
         winnings_joker += hand->rank_joker * hand->bid;
     }
+    for (int i = 0; i < list_size(hands); i++) free(list_get(hands, i));
+    list_delete(hands);
     printf("Part one: %ld\n", winnings);
     printf("Part two: %ld\n", winnings_joker);
 }

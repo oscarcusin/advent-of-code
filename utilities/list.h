@@ -8,19 +8,17 @@ typedef struct {
 } list;
 
 list * list_new();
-void list_delete(list * list);
-void list_add(list * list, void * item);
-int list_set(list * list, int index, void * item);
-int list_set_resize(list * list, int index, void * item);
-void * list_get(list * list, int index);
-void * list_get_resize(list * list, int index);
-int list_contains(list * list, void * item);
-int list_index(list * list, void * item);
-int list_size(list * list);
-int list_capacity(list * list);
-list * list_copy(list * list);
-list * list_intersection(list * list1, list * list2);
-list * list_union(list * list1, list * list2);
-list * list_difference(list * list1, list * list2);
+void list_delete(list * l);
+void list_add(list * l, void * item);
+int list_set(list * l, int index, void * item);
+void * list_get(list * l, int index);
+int list_contains(list * l, void * item);
+int list_index(list * l, void * item);
+int list_size(list * l);
+int list_capacity(list * l);
+list * list_copy(list * l);
+list * list_intersection(list * l1, list * l2);
+list * list_union(list * l1, list * l2);
+list * list_difference(list * l1, list * l2);
 
 #endif

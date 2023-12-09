@@ -33,7 +33,7 @@ int main(int argc, char * argv[]) {
         while (strcmp(curr_node->name, "ZZZ") != 0) {
             for (int instruction = 0; instruction < strlen(instructions)-1; instruction++) {
                 int direction = instructions[instruction] == 'L' ? 1 : 0;
-                for (int node_index = 0; node_index < nodes->size; node_index++) {
+                for (int node_index = 0; node_index < list_size(nodes); node_index++) {
                     struct node * next_node = list_get(nodes, node_index);
                     if (strcmp(next_node->name, direction ? curr_node->left : curr_node->right) == 0) {
                         curr_node = next_node;
@@ -44,17 +44,17 @@ int main(int argc, char * argv[]) {
             steps += strlen(instructions)-1;
         }
     }
-    int iterations_to_end[curr_node_ghosts->size];
-    for (int i = 0; i < curr_node_ghosts->size; i++) iterations_to_end[i] = -1;
+    int iterations_to_end[list_size(curr_node_ghosts)];
+    for (int i = 0; i < list_size(curr_node_ghosts); i++) iterations_to_end[i] = -1;
     int iterations = 0;
     int reached_end = 0;
-    while (reached_end < curr_node_ghosts->size) {
+    while (reached_end < list_size(curr_node_ghosts)) {
         for (int instruction = 0; instruction < strlen(instructions)-1; instruction++) {
             int direction = instructions[instruction] == 'L' ? 1 : 0;
-            for (int ghost_index = 0; ghost_index < curr_node_ghosts->size; ghost_index++) {
+            for (int ghost_index = 0; ghost_index < list_size(curr_node_ghosts); ghost_index++) {
                 if (iterations_to_end[ghost_index] != -1) continue;
                 struct node * curr_node_ghost = list_get(curr_node_ghosts, ghost_index);
-                for (int node_index = 0; node_index < nodes->size; node_index++) {
+                for (int node_index = 0; node_index < list_size(nodes); node_index++) {
                     struct node * next_node = list_get(nodes, node_index);
                     if (strcmp(next_node->name, direction ? curr_node_ghost->left : curr_node_ghost->right) == 0) {
                         list_set(curr_node_ghosts, ghost_index, next_node);
@@ -64,7 +64,7 @@ int main(int argc, char * argv[]) {
             }
         }
         iterations++;
-        for (int ghost_index = 0; ghost_index < curr_node_ghosts->size; ghost_index++) {
+        for (int ghost_index = 0; ghost_index < list_size(curr_node_ghosts); ghost_index++) {
             if (iterations_to_end[ghost_index] != -1) continue;
             struct node * curr_node_ghost = list_get(curr_node_ghosts, ghost_index);
             if (curr_node_ghost->name[2] == 'Z') {
@@ -74,7 +74,7 @@ int main(int argc, char * argv[]) {
         }
     }
     long lcm = iterations_to_end[0];
-    for (int i = 1; i < curr_node_ghosts->size; i++) {
+    for (int i = 1; i < list_size(curr_node_ghosts); i++) {
         long a = lcm;
         long b = iterations_to_end[i];
         while (b != 0) {
@@ -84,6 +84,10 @@ int main(int argc, char * argv[]) {
         }
         lcm = (lcm * iterations_to_end[i]) / a;
     }
+    for (int i = 0; i < list_size(nodes); i++) free(list_get(nodes, i));
+    list_delete(nodes);
+    list_delete(curr_node_ghosts);
     printf("Part one: %d\n", steps);
     printf("Part two: %ld\n", lcm*(strlen(instructions)-1));
+    free(instructions);
 }

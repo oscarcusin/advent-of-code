@@ -30,6 +30,7 @@ int main(int argc, char * argv[]) {
             }
             getchar();
         }
+        free(colour);
         if (valid) game_id_sum += game_id;
         power_sum += max_red * max_green * max_blue;
     }
