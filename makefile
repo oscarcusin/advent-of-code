@@ -1,14 +1,17 @@
-test: day_$(day).out
-	@for file in $(wildcard tests/day_$(day)*); do \
+n := $(shell printf '%02d' $(day))
+
+test: day_$(n).out
+	@for file in $(wildcard tests/day_$(n)*); do \
 		echo $$file; \
-		./day_$(day).out < $$file; \
+		./day_$(n).out < $$file; \
 	done
 
-input: day_$(day).out
-	./day_$(day).out < inputs/day_$(day).in
+input: day_$(n).out
+	./day_$(n).out < inputs/day_$(n).in
 
-day_$(day).out: day_$(day).c $(wildcard utilities/*)
-	gcc -Wall day_$(day).c utilities/*.c -o day_$(day).out -lm
+day_$(n).out: day_$(n).c $(wildcard utilities/*)
+	gcc -Wall day_$(n).c utilities/*.c -o day_$(n).out -lm
 
 clean:
-	rm -f day_?.out
+	rm -f day_*.out
+	
