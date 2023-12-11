@@ -10,7 +10,7 @@ input: day_$(n).out
 	./day_$(n).out < inputs/day_$(n).in
 
 day_$(n).out: day_$(n).c $(wildcard utilities/*)
-	gcc -Wall day_$(n).c utilities/*.c -o day_$(n).out -lm
+	gcc -Wall -Werror -Wpedantic day_$(n).c utilities/*.c -o day_$(n).out -lm
 
 clean:
 	rm -f day_*.out
