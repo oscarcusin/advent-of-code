@@ -10,8 +10,10 @@ typedef struct {
 list * list_new();
 void list_delete(list * l);
 void list_add(list * l, void * item);
+void list_remove(list * l, int index);
 int list_set(list * l, int index, void * item);
 void * list_get(list * l, int index);
+void list_append(list * l1, list * l2);
 int list_contains(list * l, void * item);
 int list_index(list * l, void * item);
 int list_size(list * l);

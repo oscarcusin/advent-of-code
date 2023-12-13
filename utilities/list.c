@@ -30,6 +30,17 @@ void list_add(list * l, void * item) {
     l->data[l->size++] = item;
 }
 
+void list_remove(list * l, int index) {
+    if (index < 0 || index >= l->size) {
+        printf("Index %d out of bounds for length %d.\n", index, l->size);
+        return;
+    }
+    for (int i = index; i < l->size - 1; i++) {
+        l->data[i] = l->data[i + 1];
+    }
+    l->size--;
+}
+
 int list_set(list * l, int index, void * item) {
     if (index < 0 || index >= l->size) {
         printf("Index %d out of bounds for length %d.\n", index, l->size);
@@ -45,6 +56,12 @@ void * list_get(list * l, int index) {
         return NULL;
     }
     return l->data[index];
+}
+
+void list_append(list * l1, list * l2) {
+    for (int i = 0; i < l2->size; i++) {
+        list_add(l1, l2->data[i]);
+    }
 }
 
 int list_contains(list * l, void * item) {
