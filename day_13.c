@@ -35,7 +35,7 @@ int main(int argc, char * argv[]) {
                             a = ((char *) list_get(pattern, reflection_line - 1 - dist))[i];
                             b = ((char *) list_get(pattern, reflection_line + dist))[i];
                         } else {
-                            a = ((char *) list_get(pattern, i))[reflection_line -1 - dist];
+                            a = ((char *) list_get(pattern, i))[reflection_line - 1 - dist];
                             b = ((char *) list_get(pattern, i))[reflection_line + dist];
                         }
                         if (a != b) diffs++;
