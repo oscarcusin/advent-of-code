@@ -1,6 +1,6 @@
 # Advent of Code
 
-My solutions to the [Advent of Code](https://adventofcode.com/) 2023 daily problems, written in `C`. Advent of Code is an annual event where programmers sharpen their skills through a series of programming puzzles of varying difficulty.
+My solutions to the [Advent of Code](https://adventofcode.com/) 2023 daily problems, written in C. Advent of Code is an annual event where programmers sharpen their skills through a series of programming puzzles of varying difficulty.
 
 ## Usage
 
@@ -20,7 +20,7 @@ In order to test a solution with the puzzle input, run (replace `x` with the day
 make input day=x
 ```
 
-If you wish to run on your personal puzzle input, replace `inputs/day_x.in`, where `x` is the day (e.g. `inputs/day_5.in`).
+If you wish to run on your personal puzzle input, replace `inputs/day_xx.in`, where `xx` is the day (e.g. `inputs/day_05.in`).
 
 ## Completion
 
