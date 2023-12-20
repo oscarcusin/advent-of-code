@@ -50,12 +50,12 @@ int main(int argc, char * argv[]) {
                 if (list_size(numbers) == 2) {
                     gears_sum += (long) list_get(numbers, 0) * (long) list_get(numbers, 1);
                 }
-                list_delete(numbers);
+                list_free(numbers);
             }
         }
     }
-    for (int i = 0; i < list_size(lines); i++) free(list_get(lines, i));
-    list_delete(lines);
+    list_free_items(lines);
+    list_free(lines);
     printf("Part one: %ld\n", parts_sum);
     printf("Part two: %ld\n", gears_sum);
 }

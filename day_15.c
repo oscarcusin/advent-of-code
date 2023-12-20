@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
             free(lens->label);
             free(lens);
         }
-        list_delete(box);
+        list_free(box);
     }
     free(line);
     printf("Part one: %ld\n", hash_sum);

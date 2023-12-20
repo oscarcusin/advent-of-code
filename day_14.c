@@ -96,24 +96,24 @@ int main(int argc, char * argv[]) {
     }
     for (int prev_platform = 0; prev_platform < list_size(platform_history); prev_platform++) {
         list * platform = list_get(platform_history, prev_platform);
-        for (int row = 0; row < list_size(platform); row++) free(list_get(platform, row));
-        list_delete(platform);
+        list_free_items(platform);
+        list_free(platform);
     }
-    list_delete(platform_history);
+    list_free(platform_history);
     for (int row = 0; row < list_size(platform); row++) {
         for (int i = 0; i < strlen(list_get(platform, row)); i++) {
             if (((char *) list_get(platform, row))[i] == 'O') total_load += list_size(platform) - row;
         }
-        free(list_get(platform, row));
     }
-    list_delete(platform);
+    list_free_items(platform);
+    list_free(platform);
     for (int row = 0; row < list_size(platform_cycle); row++) {
         for (int i = 0; i < strlen(list_get(platform_cycle, row)); i++) {
             if (((char *) list_get(platform_cycle, row))[i] == 'O') total_load_cycle += list_size(platform_cycle) - row;
         }
-        free(list_get(platform_cycle, row));
     }
-    list_delete(platform_cycle);
+    list_free_items(platform_cycle);
+    list_free(platform_cycle);
     printf("Part one: %ld\n", total_load);
     printf("Part two: %ld\n", total_load_cycle);
 }

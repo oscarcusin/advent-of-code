@@ -26,8 +26,8 @@ int main(int argc, char * argv[]) {
         time_concat_chars += sprintf(time_concat + time_concat_chars, "%ld", (long) list_get(times, i));
         distance_concat_chars += sprintf(distance_concat + distance_concat_chars, "%ld", (long) list_get(distances, i));
     }
-    list_delete(times);
-    list_delete(distances);
+    list_free(times);
+    list_free(distances);
     long time = atol(time_concat);
     long distance = atol(distance_concat);
     free(time_concat);

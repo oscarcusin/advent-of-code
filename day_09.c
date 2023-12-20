@@ -30,18 +30,18 @@ int main(int argc, char * argv[]) {
                 if (diff == 0) zeroes++;
                 list_add(diffs, (void *) diff);
             }
-            list_delete(numbers);
+            list_free(numbers);
             numbers = diffs;
         }
-        list_delete(numbers);
+        list_free(numbers);
         for (int i = list_size(last_numbers) - 2; i >= 0; i--) {
             list_set(last_numbers, i, (void *) ((long) list_get(last_numbers, i) + (long) list_get(last_numbers, i+1)));
             list_set(first_numbers, i, (void *) ((long) list_get(first_numbers, i) - (long) list_get(first_numbers, i+1)));
         }
         total_sum_last += (long) list_get(last_numbers, 0);
         total_sum_first += (long) list_get(first_numbers, 0);
-        list_delete(last_numbers);
-        list_delete(first_numbers);
+        list_free(last_numbers);
+        list_free(first_numbers);
     }
     free(line);
     printf("Part one: %ld\n", total_sum_last);

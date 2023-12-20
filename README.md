@@ -41,7 +41,7 @@ If you wish to run on your personal puzzle input, replace `inputs/day_xx.in`, wh
 | 13  | ⭐⭐ |
 | 14  | ⭐⭐ |
 | 15  | ⭐⭐ |
-| 16  |       |
+| 16  | ⭐⭐ |
 | 17  |       |
 | 18  |       |
 | 19  |       |

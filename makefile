@@ -1,5 +1,8 @@
 n := $(shell printf '%02d' $(day))
 
+memcheck: day_$(n).out
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./day_$(n).out < inputs/day_$(n).in
+
 test: day_$(n).out
 	@for file in $(wildcard tests/day_$(n)*); do \
 		echo $$file; \

@@ -104,8 +104,8 @@ int main(int argc, char * argv[]) {
         }
     }
     printf("Part two: %d\n", tiles);
-    for (int i = 0; i < list_size(lines); i++) free(list_get(lines, i));
-    for (int i = 0; i < list_size(circuit); i++) free(list_get(circuit, i));
-    list_delete(lines);
-    list_delete(circuit);
+    list_free_items(lines);
+    list_free_items(circuit);
+    list_free(lines);
+    list_free(circuit);
 }

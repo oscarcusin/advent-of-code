@@ -8,7 +8,8 @@ typedef struct {
 } list;
 
 list * list_new();
-void list_delete(list * l);
+void list_free(list * l);
+void list_free_items(list * l);
 void list_add(list * l, void * item);
 void list_remove(list * l, int index);
 int list_set(list * l, int index, void * item);

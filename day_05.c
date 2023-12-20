@@ -73,13 +73,13 @@ int main(int argc, char * argv[]) {
             }
         }
     }
-    list_delete(seeds);
+    list_free(seeds);
     for (int i = 0; i < list_size(maps); i++) {
         list * map = list_get(maps, i);
-        for (int j = 0; j < list_size(map); j++) free(list_get(map, j));        
-        list_delete(map);
+        list_free_items(map);    
+        list_free(map);
     }
-    list_delete(maps);
+    list_free(maps);
     printf("Part one: %ld\n", min_location_single);
     printf("Part two: %ld\n", min_location_range);
 }

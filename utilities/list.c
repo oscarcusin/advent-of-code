@@ -12,10 +12,17 @@ list * list_new() {
     return l;
 }
 
-void list_delete(list * l) {
+void list_free(list * l) {
     if (l == NULL) return;
     free(l->data);
     free(l);
+}
+
+void list_free_items(list * l) {
+    if (l == NULL) return;
+    for (int i = 0; i < l->size; i++) {
+        free(l->data[i]);
+    }
 }
 
 void list_add(list * l, void * item) {

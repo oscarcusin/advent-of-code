@@ -51,10 +51,10 @@ int main(int argc, char * argv[]) {
                 }
             }
         }
-        for (int i = 0; i < list_size(pattern); i++) free(list_get(pattern, i));
-        list_delete(pattern);
+        list_free_items(pattern);
+        list_free(pattern);
     }
-    list_delete(patterns);
+    list_free(patterns);
     printf("Part one: %ld\n", total_sum);
     printf("Part two: %ld\n", total_sum_smudge);
 }

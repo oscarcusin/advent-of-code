@@ -64,8 +64,8 @@ int main(int argc, char * argv[]) {
             total_distance_older += labs(coords1->x_older - coords2->x_older) + labs(coords1->y_older - coords2->y_older);
         }
     }
-    for (int i = 0; i < list_size(galaxies); i++) free(list_get(galaxies, i));
-    list_delete(galaxies);
+    list_free_items(galaxies);
+    list_free(galaxies);
     printf("Part one: %ld\n", total_distance);
     printf("Part one: %ld\n", total_distance_older);
 }

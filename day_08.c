@@ -84,9 +84,9 @@ int main(int argc, char * argv[]) {
         }
         lcm = (lcm * iterations_to_end[i]) / a;
     }
-    for (int i = 0; i < list_size(nodes); i++) free(list_get(nodes, i));
-    list_delete(nodes);
-    list_delete(curr_node_ghosts);
+    list_free_items(nodes);
+    list_free(nodes);
+    list_free(curr_node_ghosts);
     printf("Part one: %d\n", steps);
     printf("Part two: %ld\n", lcm*(strlen(instructions)-1));
     free(instructions);

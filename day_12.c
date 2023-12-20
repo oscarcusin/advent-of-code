@@ -35,8 +35,8 @@ long valid_arrangements(char * springs, list * groups, int curr_group, long * me
                     arrangements_operational = valid_arrangements(springs + i + 1, groups_operational, 0, memo, memo_shape);
                     memo[strlen(springs + i + 1) * memo_shape[1] * memo_shape[2] + list_size(groups) * memo_shape[2] + 1] = arrangements_damaged;
                     memo[strlen(springs + i + 1) * memo_shape[1] * memo_shape[2] + list_size(groups) * memo_shape[2] + 0] = arrangements_operational;
-                    list_delete(groups_damaged);
-                    list_delete(groups_operational);
+                    list_free(groups_damaged);
+                    list_free(groups_operational);
                     return arrangements_damaged + arrangements_operational;
                 }
                 break;
@@ -81,7 +81,7 @@ int main(int argc, char * argv[]) {
             totals[i] += arrangements;
             free(memo);
             free(springs[i]);
-            list_delete(groups[i]);
+            list_free(groups[i]);
         }
     }
     free(line);

@@ -35,14 +35,14 @@ int main(int argc, char * argv[]) {
             if (card_id + i > list_size(cards)-1) list_add(cards, (void *) 0);
             list_set(cards, card_id + i, (void *) ((long) list_get(cards, card_id + i) + (long) list_get(cards, card_id)));
         }
-        list_delete(winning_numbers);
-        list_delete(my_numbers);
-        list_delete(matches);
+        list_free(winning_numbers);
+        list_free(my_numbers);
+        list_free(matches);
     }
     printf("Part one: %d\n", points);
     long total_cards = 0;
     for (int i = 0; i < list_size(cards); i++) total_cards += (long) list_get(cards, i);
     printf("Part two: %ld\n", total_cards);
     free(line);
-    list_delete(cards);
+    list_free(cards);
 }
