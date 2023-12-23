@@ -114,6 +114,6 @@ int main(int argc, char * argv[]) {
     }
     list_free_items(platform_cycle);
     list_free(platform_cycle);
-    printf("Part one: %ld\n", total_load);
-    printf("Part two: %ld\n", total_load_cycle);
+    printf("%ld\n", total_load);
+    printf("%ld\n", total_load_cycle);
 }

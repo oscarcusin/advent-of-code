@@ -91,7 +91,7 @@ int main(int argc, char * argv[]) {
             }
         }
     }
-    printf("Part one: %d\n", steps / 2);
+    printf("%d\n", steps / 2);
     int tiles = 0;
     for (int y = 0; y < list_size(circuit); y++) {
         int north_flag = 0, south_flag = 0; 
@@ -103,7 +103,7 @@ int main(int argc, char * argv[]) {
             if (line[x] == '0' && north_flag && south_flag) tiles++;
         }
     }
-    printf("Part two: %d\n", tiles);
+    printf("%d\n", tiles);
     list_free_items(lines);
     list_free_items(circuit);
     list_free(lines);

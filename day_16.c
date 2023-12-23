@@ -96,6 +96,6 @@ int main(int argc, char * argv[]) {
     }
     list_free_items(layout);
     list_free(layout);
-    printf("Part one: %d\n", energized_tiles_top_left);
-    printf("Part two: %d\n", max_energized_tiles);
+    printf("%d\n", energized_tiles_top_left);
+    printf("%d\n", max_energized_tiles);
 }

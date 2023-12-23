@@ -36,6 +36,6 @@ int main(int argc, char * argv[]) {
     for (start = 0; start < time; start++) if ((time - start) * start > distance) break;
     for (end = time - 1; end >= 0; end--) if ((time - end) * end > distance) break;
     int ways_concat = end - start + 1;
-    printf("Part one: %d\n", total_ways);
-    printf("Part one: %d\n", ways_concat);
+    printf("%d\n", total_ways);
+    printf("%d\n", ways_concat);
 }

@@ -66,6 +66,6 @@ int main(int argc, char * argv[]) {
     }
     list_free_items(galaxies);
     list_free(galaxies);
-    printf("Part one: %ld\n", total_distance);
-    printf("Part one: %ld\n", total_distance_older);
+    printf("%ld\n", total_distance);
+    printf("%ld\n", total_distance_older);
 }

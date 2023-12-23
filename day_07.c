@@ -105,8 +105,8 @@ int main(int argc, char * argv[]) {
     }
     rank(hands, types, 0);
     rank(hands, types_joker, 1);
-    list_free_items(types);
-    list_free_items(types_joker);
+    for (int i = 0; i < 7; i++) list_free(list_get(types, i));
+    for (int i = 0; i < 7; i++) list_free(list_get(types_joker, i));
     list_free(types);
     list_free(types_joker);
     long winnings = 0;
@@ -118,6 +118,6 @@ int main(int argc, char * argv[]) {
     }
     list_free_items(hands);
     list_free(hands);
-    printf("Part one: %ld\n", winnings);
-    printf("Part two: %ld\n", winnings_joker);
+    printf("%ld\n", winnings);
+    printf("%ld\n", winnings_joker);
 }

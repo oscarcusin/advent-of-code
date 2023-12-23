@@ -85,6 +85,6 @@ int main(int argc, char * argv[]) {
         }
     }
     free(line);
-    printf("Part one: %ld\n", totals[0]);
-    printf("Part two: %ld\n", totals[1]);
+    printf("%ld\n", totals[0]);
+    printf("%ld\n", totals[1]);
 }

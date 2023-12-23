@@ -41,6 +41,6 @@ int main(int argc, char * argv[]) {
         combined_sum += (left_digit - '0') * 10 + right_digit - '0';
     }
     free(line);
-    printf("Part one: %d\n", digits_only_sum);
-    printf("Part two: %d\n", combined_sum);
+    printf("%d\n", digits_only_sum);
+    printf("%d\n", combined_sum);
 }

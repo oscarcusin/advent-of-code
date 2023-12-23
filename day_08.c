@@ -87,7 +87,7 @@ int main(int argc, char * argv[]) {
     list_free_items(nodes);
     list_free(nodes);
     list_free(curr_node_ghosts);
-    printf("Part one: %d\n", steps);
-    printf("Part two: %ld\n", lcm*(strlen(instructions)-1));
+    printf("%d\n", steps);
+    printf("%ld\n", lcm*(strlen(instructions)-1));
     free(instructions);
 }

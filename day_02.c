@@ -34,6 +34,6 @@ int main(int argc, char * argv[]) {
         if (valid) game_id_sum += game_id;
         power_sum += max_red * max_green * max_blue;
     }
-    printf("Part one: %d\n", game_id_sum);
-    printf("Part two: %d\n", power_sum);
+    printf("%d\n", game_id_sum);
+    printf("%d\n", power_sum);
 }

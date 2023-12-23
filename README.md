@@ -4,23 +4,15 @@ My solutions to the [Advent of Code](https://adventofcode.com/) 2023 daily probl
 
 ## Usage
 
-### Tests
+A makefile is provided to compile and run the solutions. The makefile assumes that the [GNU C Compiler](https://gcc.gnu.org/) is installed.
 
-In order to test a solution with the sample input from the problem statement, run (replace `x` with the day, e.g. `day=5`):
+### Commands (replace `x` with the desired day, e.g., `day=5`)
 
-```bash
-make test day=x
-```
-
-### Inputs
-
-In order to test a solution with the puzzle input, run (replace `x` with the day, e.g. `day=5`):
-
-```bash
-make input day=x
-```
-
-If you wish to run on your personal puzzle input, replace `inputs/day_xx.in`, where `xx` is the day (e.g. `inputs/day_05.in`).
+- Run `make test day=x` to test the solution with the test(s) from the puzzle description.
+- Run `make input day=x` to test the solution with the puzzle input.
+- Run `make anscheck day=x` to check that the output is correct.
+- Run `make memcheck day=x` to check for memory leaks/errors.
+- Run `make clean` to remove all compiled files.
 
 ## Completion
 
@@ -42,7 +34,7 @@ If you wish to run on your personal puzzle input, replace `inputs/day_xx.in`, wh
 | 14  | ⭐⭐ |
 | 15  | ⭐⭐ |
 | 16  | ⭐⭐ |
-| 17  |       |
+| 17  | ⭐⭐ |
 | 18  |       |
 | 19  |       |
 | 20  |       |

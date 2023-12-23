@@ -2,7 +2,7 @@
 #define LIST_H
 
 typedef struct {
-    void ** data;
+    void ** items;
     int size;
     int capacity;
 } list;

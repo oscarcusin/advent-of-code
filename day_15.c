@@ -70,6 +70,6 @@ int main(int argc, char * argv[]) {
         list_free(box);
     }
     free(line);
-    printf("Part one: %ld\n", hash_sum);
-    printf("Part two: %ld\n", focusing_power);
+    printf("%ld\n", hash_sum);
+    printf("%ld\n", focusing_power);
 }

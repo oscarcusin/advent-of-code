@@ -80,6 +80,6 @@ int main(int argc, char * argv[]) {
         list_free(map);
     }
     list_free(maps);
-    printf("Part one: %ld\n", min_location_single);
-    printf("Part two: %ld\n", min_location_range);
+    printf("%ld\n", min_location_single);
+    printf("%ld\n", min_location_range);
 }

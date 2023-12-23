@@ -56,6 +56,6 @@ int main(int argc, char * argv[]) {
     }
     list_free_items(lines);
     list_free(lines);
-    printf("Part one: %ld\n", parts_sum);
-    printf("Part two: %ld\n", gears_sum);
+    printf("%ld\n", parts_sum);
+    printf("%ld\n", gears_sum);
 }

@@ -39,10 +39,10 @@ int main(int argc, char * argv[]) {
         list_free(my_numbers);
         list_free(matches);
     }
-    printf("Part one: %d\n", points);
+    printf("%d\n", points);
     long total_cards = 0;
     for (int i = 0; i < list_size(cards); i++) total_cards += (long) list_get(cards, i);
-    printf("Part two: %ld\n", total_cards);
+    printf("%ld\n", total_cards);
     free(line);
     list_free(cards);
 }

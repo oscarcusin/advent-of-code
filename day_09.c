@@ -44,6 +44,6 @@ int main(int argc, char * argv[]) {
         list_free(first_numbers);
     }
     free(line);
-    printf("Part one: %ld\n", total_sum_last);
-    printf("Part two: %ld\n", total_sum_first);
+    printf("%ld\n", total_sum_last);
+    printf("%ld\n", total_sum_first);
 }
