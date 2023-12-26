@@ -1,17 +1,21 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#define INITIAL_CAPACITY 16
+
 typedef struct queue {
     void ** items;
-    int size;
-    int capacity;
-    int front;
+    size_t front;
+    size_t size;
+    size_t capacity;
 } queue;
 
 queue * queue_new();
 void queue_free(queue * q);
-void queue_enqueue(queue * q, void * item);
+int queue_enqueue(queue * q, void * item);
 void * queue_dequeue(queue * q);
-int queue_size(queue * q);
+void * queue_peek(queue * q);
+int queue_contains(queue * q, void * item);
+size_t queue_size(queue * q);
 
 #endif

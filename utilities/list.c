@@ -2,11 +2,18 @@
 #include <stdlib.h>
 #include "list.h"
 
-#define INITIAL_CAPACITY 16
-
 list * list_new() {
     list * l = malloc(sizeof(list));
+    if (l == NULL) {
+        fprintf(stderr, "list_new(): Failed to allocate %lu bytes for list struct.\n", sizeof(list));
+        return NULL;
+    }
     l->items = malloc(INITIAL_CAPACITY * sizeof(void *));
+    if (l->items == NULL) {
+        fprintf(stderr, "list_new(): Failed to allocate %lu bytes for internal array.\n", INITIAL_CAPACITY * sizeof(void *));
+        free(l);
+        return NULL;
+    }
     l->size = 0;
     l->capacity = INITIAL_CAPACITY;
     return l;
@@ -15,7 +22,9 @@ list * list_new() {
 void list_free(list * l) {
     if (l == NULL) return;
     free(l->items);
+    l->items = NULL;
     free(l);
+    l = NULL;
 }
 
 void list_free_items(list * l) {
@@ -25,76 +34,86 @@ void list_free_items(list * l) {
     }
 }
 
-void list_add(list * l, void * item) {
+int list_add(list * l, void * item) {
+    if (l == NULL) return -1;
     if (l->size >= l->capacity) {
         l->capacity *= 2;
-        l->items = realloc(l->items, l->capacity * sizeof(void *));
-        if (l->items == NULL) {
-            printf("Failed to allocate memory for list.\n");
-            return;
+        void ** new_items = realloc(l->items, l->capacity * sizeof(void *));
+        if (new_items == NULL) {
+            fprintf(stderr, "list_add(): Failed to allocate %lu bytes for internal array.\n", l->capacity * sizeof(void *));
+            return -1;
         }
+        l->items = new_items;
     }
     l->items[l->size++] = item;
+    return 0;
 }
 
-void list_remove(list * l, int index) {
-    if (index < 0 || index >= l->size) {
-        printf("Index %d out of bounds for length %d.\n", index, l->size);
-        return;
+int list_remove(list * l, size_t index) {
+    if (l == NULL) return -1;
+    if (index >= l->size) {
+        printf("Index %lu out of bounds for length %lu.\n", index, l->size);
+        return -1;
     }
     for (int i = index; i < l->size - 1; i++) {
         l->items[i] = l->items[i + 1];
     }
     l->size--;
+    return 0;
 }
 
-int list_set(list * l, int index, void * item) {
-    if (index < 0 || index >= l->size) {
-        printf("Index %d out of bounds for length %d.\n", index, l->size);
-        return 0;
+int list_set(list * l, size_t index, void * item) {
+    if (l == NULL) return -1;
+    if (index >= l->size) {
+        printf("Index %lu out of bounds for length %lu.\n", index, l->size);
+        return -1;
     }
     l->items[index] = item;
-    return 1;
+    return 0;
 }
 
-void * list_get(list * l, int index) {
-    if (index < 0 || index >= l->size) {
-        printf("Index %d out of bounds for length %d.\n", index, l->size);
+void * list_get(list * l, size_t index) {
+    if (l == NULL) return NULL;
+    if (index >= l->size) {
+        printf("Index %lu out of bounds for length %lu.\n", index, l->size);
         return NULL;
     }
     return l->items[index];
 }
 
-void list_append(list * l1, list * l2) {
-    for (int i = 0; i < l2->size; i++) {
-        list_add(l1, l2->items[i]);
-    }
-}
-
 int list_contains(list * l, void * item) {
+    if (l == NULL) return 0;
     for (int i = 0; i < l->size; i++) {
         if (l->items[i] == item) return 1;
     }
     return 0;
 }
 
-int list_index(list * l, void * item) {
+size_t list_index_of(list * l, void * item) {
+    if (l == NULL) return -1;
     for (int i = 0; i < l->size; i++) {
         if (l->items[i] == item) return i;
     }
     return -1;
 }
 
-int list_size(list * l) {
+size_t list_size(list * l) {
+    if (l == NULL) return 0;
     return l->size;
 }
 
-int list_capacity(list * l) {
-    return l->capacity;
+int list_concat(list * l1, list * l2) {
+    if (l1 == NULL || l2 == NULL) return -1;
+    for (int i = 0; i < l2->size; i++) {
+        list_add(l1, l2->items[i]);
+    }
+    return 0;
 }
 
 list * list_copy(list * l) {
-    list * copy = list_new(l->capacity);
+    if (l == NULL) return NULL;
+    list * copy = list_new();
+    if (copy == NULL) return NULL;
     for (int i = 0; i < l->size; i++) {
         list_add(copy, l->items[i]);
     }
@@ -102,7 +121,9 @@ list * list_copy(list * l) {
 }
 
 list * list_intersection(list * l1, list * l2) {
-    list * intersection_list = list_new(l1->size < l2->size ? l1->size : l2->size);
+    if (l1 == NULL || l2 == NULL) return NULL;
+    list * intersection_list = list_new();
+    if (intersection_list == NULL) return NULL;
     for (int i = 0; i < l1->size; i++) {
         if (list_contains(l2, l1->items[i])) {
             list_add(intersection_list, l1->items[i]);
@@ -112,7 +133,9 @@ list * list_intersection(list * l1, list * l2) {
 }
 
 list * list_union(list * l1, list * l2) {
-    list * union_list = list_new(l1->size + l2->size);
+    if (l1 == NULL || l2 == NULL) return NULL;
+    list * union_list = list_new();
+    if (union_list == NULL) return NULL;
     for (int i = 0; i < l1->size; i++) {
         list_add(union_list, l1->items[i]);
     }
@@ -125,7 +148,9 @@ list * list_union(list * l1, list * l2) {
 }
 
 list * list_difference(list * l1, list * l2) {
-    list * difference_list = list_new(l1->size);
+    if (l1 == NULL || l2 == NULL) return NULL;
+    list * difference_list = list_new();
+    if (difference_list == NULL) return NULL;
     for (int i = 0; i < l1->size; i++) {
         if (!list_contains(l2, l1->items[i])) {
             list_add(difference_list, l1->items[i]);

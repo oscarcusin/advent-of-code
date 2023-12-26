@@ -68,7 +68,7 @@ int main(int argc, char * argv[]) {
         for (int i = 0; i < 5; i++) {
             strcat(springs[1], springs[0]);
             if (i < 4) strcat(springs[1], "?");
-            list_append(groups[1], groups[0]);
+            list_concat(groups[1], groups[0]);
         }
         for (int i = 0; i < 2; i++) {
             int memo_shape[3];
