@@ -36,7 +36,7 @@ A makefile is provided to compile and run the solutions. The makefile assumes th
 | 16  | ⭐⭐ |
 | 17  | ⭐⭐ |
 | 18  | ⭐⭐ |
-| 19  |       |
+| 19  | ⭐⭐ |
 | 20  |       |
 | 21  |       |
 | 22  |       |
